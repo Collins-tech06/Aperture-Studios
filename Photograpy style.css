@@ -1,0 +1,208 @@
+    /* Import Google Fonts for headings */
+    @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    /* Style the body */
+    body{
+            font-family: sans-serif;
+            text-align: center;
+            margin: 2px;
+            background-color:#d8c584 ;
+        }
+    h1{
+            font-family: 'Satisfy', cursive;
+            font-weight: 300;
+            font-size: 70px;
+            color: #2c2a2a;
+            margin-top: 20px;
+            filter:blur(10px);
+            opacity:0;
+            transition: filter 1s ease, opacity 1s ease;
+        }
+    .reveal-focus{
+            filter:blur(0px);
+            opacity:1;
+     }
+    /* 1. General style for ALL h2 tags on your website */
+h2 {
+    font-family: 'Pacifico', cursive;
+    font-weight: 300;
+    color: #191818; /* Solid color for Gallery/Contact pages */
+    margin-top: 20px;
+    font-size: 28px;
+    background: none; /* No shimmer by default */
+}
+
+/* 2. Specific style for ONLY your Home page heading */
+#shimmer-home {
+    background: linear-gradient(to right, #191818 20%, #daa520 50%, #191818 80%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent; /* Ensures the gradient shows in Chrome/Safari */
+    transition: background-position 2s ease-out; 
+    background-position: 200% center;
+}
+
+/* The sweep animation class */
+#shimmer-home.shine-sweep {
+    background-position: -200% center;
+}
+
+/* The cleanup class */
+#shimmer-home.shine-finished {
+    background: none !important;
+    -webkit-background-clip: initial !important; 
+    background-clip: initial !important;
+    color: #191818 !important;
+    -webkit-text-fill-color: #191818 !important;
+    transition: color 0.5s ease;
+}
+    /* Style the header */
+    nav ul{
+            list-style-type: none;
+            padding: 20px;
+            margin:2px;
+        }
+    /* Style the navigation links */
+    nav li{
+            display: inline;
+            margin: 0 15px;
+            color: #daa520;
+            font-weight:bolder;
+            font-size: 18px;
+            transition: color 0.4s ease;
+        }
+    nav li:hover{
+            color: #363535;
+        }
+    /* Ensures link doesn't disrupt existing format*/
+
+nav li a {
+    text-decoration: none; /* Removes the blue underline */
+    color: inherit;       /* Forces the link to use gold color */
+}
+
+/* Ensures the hover effect still works on the link itself */
+nav li a:hover {
+    color: #363535; 
+}
+    /* Style the images */
+    section img{
+            max-width:150%;
+            height: 500px;
+            border-radius:12px;
+            margin-bottom:25px;
+            }
+    /* Style the button */
+    Button{
+        background-color: #333;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        margin: 20px auto;
+    }
+    /* Add a hover effect to the button */
+    button:hover {
+        background-color: #555;
+        transform: rotateY(-2px);
+    }
+    button:active{
+        transform: rotateY(0);
+    }
+    #Gallery{
+        text-decoration: underline;
+    }
+    .gallery-grid{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px 40px ;
+    }
+    .Gallery_Container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /*3 columns that grow and shrink equally*/
+    /*Space between the images*/
+    gap: 15px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto; /*Centers gallery on screen*/
+    }
+    .photo{
+        border-radius: 8px;
+        overflow: hidden; /*Prevents corners of image from sticking out*/
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); /*Subtle shadow*/
+        height: 250px; /*Uniform height for all images*/
+    }
+    .photo img{ /*For the image*/
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /*Crop image so that it doesn't look stretched*/
+        display: block;
+    }
+    /*Gallery page JS interactions*/
+    /* The dark background that covers the screen */
+#lightbox {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Very dark semi-transparent */
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+/* When the JS adds the .active class, show it! */
+#lightbox.active {
+    display: flex;
+}
+
+/* The style for the big popped-out image */
+#lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+    border: 3px solid white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+/*AI Code for hover effects on Gallery page*/
+/* 1. Target the container of your images */
+.photo {
+    overflow: hidden; /* This "clips" the image so it doesn't leak out when it grows */
+    border-radius: 10px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Makes the movement smooth */
+    cursor: pointer;
+}
+
+/* 2. What happens when the mouse is over it */
+.photo:hover {
+    transform: scale(1.05); /* Grows by 5% */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Adds a deep shadow */
+}
+
+/* 3. Make the image itself smooth too */
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease; /* Prepares it for the color change */
+}
+
+/* 4. Optional: Start grayscale and turn to color on hover */
+.photo img {
+    filter: grayscale(100%);
+}
+
+.photo:hover img {
+    filter: grayscale(0%);
+}
